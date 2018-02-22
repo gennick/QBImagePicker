@@ -48,4 +48,9 @@ typedef NS_ENUM(NSUInteger, QBImagePickerMediaType) {
 @property (nonatomic, assign) NSUInteger numberOfColumnsInPortrait;
 @property (nonatomic, assign) NSUInteger numberOfColumnsInLandscape;
 
+@property (nonatomic, assign) BOOL showFirstAlbumDirectly;
+@property (nonatomic, assign) UIEdgeInsets collectionInsets;
+@property (nonatomic, assign) CGFloat minimumLineSpacing;
+@property (nonatomic, assign) CGFloat minimumInteritemSpacing;
+
 @end

@@ -38,6 +38,10 @@
         self.minimumNumberOfSelection = 1;
         self.numberOfColumnsInPortrait = 4;
         self.numberOfColumnsInLandscape = 7;
+        self.collectionInsets = UIEdgeInsetsMake(8, 0, 2, 0);
+        self.minimumLineSpacing = 2;
+        self.minimumInteritemSpacing = 2;
+        
         
         _selectedAssets = [NSMutableOrderedSet orderedSet];
         

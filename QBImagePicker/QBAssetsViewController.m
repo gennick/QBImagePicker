@@ -658,9 +658,21 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
         numberOfColumns = self.imagePickerController.numberOfColumnsInLandscape;
     }
     
-    CGFloat width = (CGRectGetWidth(self.view.frame) - 2.0 * (numberOfColumns - 1)) / numberOfColumns;
+    CGFloat width = floor((CGRectGetWidth(self.view.frame) - 2 * self.imagePickerController.minimumInteritemSpacing - self.imagePickerController.collectionInsets.left - self.imagePickerController.collectionInsets.right) / numberOfColumns);
     
     return CGSizeMake(width, width);
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return self.imagePickerController.collectionInsets;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return self.imagePickerController.minimumLineSpacing;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return self.imagePickerController.minimumInteritemSpacing;
 }
 
 @end

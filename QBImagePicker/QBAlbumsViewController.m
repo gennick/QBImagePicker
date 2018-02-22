@@ -50,6 +50,10 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
     
     [self updateAssetCollections];
     
+    if (self.imagePickerController.showFirstAlbumDirectly) {
+        [self performSegueWithIdentifier:@"albumIdentifier" sender:nil];
+    }
+    
     // Register observer
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
 }
