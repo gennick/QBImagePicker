@@ -7,6 +7,7 @@
 //
 
 #import "QBAssetCell.h"
+#import "QBCheckmarkView.h"
 
 @interface QBAssetCell ()
 
@@ -15,13 +16,34 @@
 @end
 
 @implementation QBAssetCell
+    
+- (void)setUseCustomCheckmark:(BOOL)useCustomCheckmark {
+    _useCustomCheckmark = useCustomCheckmark;
+    
+    if (self.useCustomCheckmark) {
+        self.overlayView.hidden = NO;
+        self.overlayView.backgroundColor = [UIColor clearColor];
+        
+        QBCheckmarkView *checkmarkView = (QBCheckmarkView *)self.overlayView.subviews.firstObject;
+        checkmarkView.customCheckmarkImageView.hidden = NO;
+        checkmarkView.customCheckmarkImageView.image = self.customCheckmarkUnselected;
+        checkmarkView.customCheckmarkImageView.highlightedImage = self.customCheckmarkSelected;
+    }
+}
 
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
     
-    // Show/hide overlay view
-    self.overlayView.hidden = !(selected && self.showsOverlayViewWhenSelected);
+    if (self.useCustomCheckmark) {
+        self.overlayView.hidden = NO;
+        
+        QBCheckmarkView *checkmarkView = (QBCheckmarkView *)self.overlayView.subviews.firstObject;
+        checkmarkView.customCheckmarkImageView.highlighted = selected;
+    } else {
+        // Show/hide overlay view
+        self.overlayView.hidden = !(selected && self.showsOverlayViewWhenSelected);
+    }
 }
 
 @end

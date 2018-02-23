@@ -52,5 +52,11 @@ typedef NS_ENUM(NSUInteger, QBImagePickerMediaType) {
 @property (nonatomic, assign) UIEdgeInsets collectionInsets;
 @property (nonatomic, assign) CGFloat minimumLineSpacing;
 @property (nonatomic, assign) CGFloat minimumInteritemSpacing;
+@property (nonatomic, strong) UIColor *backgroundColor;
+@property (nonatomic, strong) UIColor *imagesNumberLabelColor;
+@property (nonatomic, strong) UIFont *imagesNumberLabelFont;
+@property (nonatomic, assign) BOOL useCustomCheckmark;
+@property (nonatomic, strong) UIImage *customCheckmarkUnselected;
+@property (nonatomic, strong) UIImage *customCheckmarkSelected;
 
 @end

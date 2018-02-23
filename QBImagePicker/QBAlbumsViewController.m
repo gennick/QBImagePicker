@@ -43,6 +43,8 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
     
     [self setUpToolbarItems];
     
+    self.tableView.backgroundColor = self.imagePickerController.backgroundColor;
+    
     // Fetch user albums and smart albums
     PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAny options:nil];
     PHFetchResult *userAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAny options:nil];
@@ -281,6 +283,8 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
     QBAlbumCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AlbumCell" forIndexPath:indexPath];
     cell.tag = indexPath.row;
     cell.borderWidth = 1.0 / [[UIScreen mainScreen] scale];
+    cell.backgroundColor = self.imagePickerController.backgroundColor;
+    cell.contentView.backgroundColor = self.imagePickerController.backgroundColor;
     
     // Thumbnail
     PHAssetCollection *assetCollection = self.assetCollections[indexPath.row];

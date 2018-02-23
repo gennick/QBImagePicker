@@ -77,6 +77,8 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
     [self setUpToolbarItems];
     [self resetCachedAssets];
     
+    self.collectionView.backgroundColor = self.imagePickerController.backgroundColor;
+    
     // Register observer
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
 }
@@ -449,6 +451,9 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
     QBAssetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AssetCell" forIndexPath:indexPath];
     cell.tag = indexPath.item;
     cell.showsOverlayViewWhenSelected = self.imagePickerController.allowsMultipleSelection;
+    cell.customCheckmarkSelected = self.imagePickerController.customCheckmarkSelected;
+    cell.customCheckmarkUnselected = self.imagePickerController.customCheckmarkUnselected;
+    cell.useCustomCheckmark = self.imagePickerController.useCustomCheckmark;
     
     // Image
     PHAsset *asset = self.fetchResult[indexPath.item];
@@ -503,6 +508,8 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
         
         // Number of assets
         UILabel *label = (UILabel *)[footerView viewWithTag:1];
+        label.font = self.imagePickerController.imagesNumberLabelFont;
+        label.textColor = self.imagePickerController.imagesNumberLabelColor;
         
         NSBundle *bundle = self.imagePickerController.assetBundle;
         NSUInteger numberOfPhotos = [self.fetchResult countOfAssetsWithMediaType:PHAssetMediaTypeImage];
@@ -658,7 +665,7 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
         numberOfColumns = self.imagePickerController.numberOfColumnsInLandscape;
     }
     
-    CGFloat width = floor((CGRectGetWidth(self.view.frame) - 2 * self.imagePickerController.minimumInteritemSpacing - self.imagePickerController.collectionInsets.left - self.imagePickerController.collectionInsets.right) / numberOfColumns);
+    CGFloat width = floor((CGRectGetWidth(self.view.frame) - (numberOfColumns - 1) * self.imagePickerController.minimumInteritemSpacing - self.imagePickerController.collectionInsets.left - self.imagePickerController.collectionInsets.right) / numberOfColumns);
     
     return CGSizeMake(width, width);
 }

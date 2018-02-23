@@ -41,6 +41,10 @@
         self.collectionInsets = UIEdgeInsetsMake(8, 0, 2, 0);
         self.minimumLineSpacing = 2;
         self.minimumInteritemSpacing = 2;
+        self.backgroundColor = [UIColor whiteColor];
+        self.imagesNumberLabelColor = [UIColor blackColor];
+        self.imagesNumberLabelFont = [UIFont systemFontOfSize:17];
+        self.useCustomCheckmark = NO;
         
         
         _selectedAssets = [NSMutableOrderedSet orderedSet];

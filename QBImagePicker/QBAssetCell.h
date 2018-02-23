@@ -17,4 +17,8 @@
 
 @property (nonatomic, assign) BOOL showsOverlayViewWhenSelected;
 
+@property (nonatomic, assign) BOOL useCustomCheckmark;
+@property (nonatomic, strong) UIImage *customCheckmarkUnselected;
+@property (nonatomic, strong) UIImage *customCheckmarkSelected;
+
 @end

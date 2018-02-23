@@ -21,16 +21,21 @@
     self.borderColor = [UIColor whiteColor];
     self.bodyColor = [UIColor colorWithRed:(20.0 / 255.0) green:(111.0 / 255.0) blue:(223.0 / 255.0) alpha:1.0];
     self.checkmarkColor = [UIColor whiteColor];
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    if (!self.customCheckmarkImageView.hidden) {
+        [super drawRect:rect];
+        return;
+    }
     
     // Set shadow
     self.layer.shadowColor = [[UIColor grayColor] CGColor];
     self.layer.shadowOffset = CGSizeMake(0, 0);
     self.layer.shadowOpacity = 0.6;
     self.layer.shadowRadius = 2.0;
-}
-
-- (void)drawRect:(CGRect)rect
-{
+    
     // Border
     [self.borderColor setFill];
     [[UIBezierPath bezierPathWithOvalInRect:self.bounds] fill];
