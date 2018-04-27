@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
 
 @class QBImagePickerController;
 @class PHAssetCollection;
@@ -15,5 +16,7 @@
 
 @property (nonatomic, weak) QBImagePickerController *imagePickerController;
 @property (nonatomic, strong) PHAssetCollection *assetCollection;
+    
+- (void)deselectAsset: (PHAsset *)asset;
 
 @end

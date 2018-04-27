@@ -153,6 +153,15 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
     // Deregister observer
     [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
 }
+    
+- (void)deselectAsset: (PHAsset *)asset {
+    NSUInteger idx = [self.fetchResult indexOfObject:asset];
+    if (idx != NSNotFound) {
+        NSIndexPath *ip = [NSIndexPath indexPathForItem:idx inSection:0];
+        [self.collectionView deselectItemAtIndexPath:ip animated:NO];
+        [self collectionView:self.collectionView didDeselectItemAtIndexPath:ip];
+    }
+}
 
 
 #pragma mark - Accessors
