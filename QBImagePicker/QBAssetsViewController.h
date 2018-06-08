@@ -18,5 +18,6 @@
 @property (nonatomic, strong) PHAssetCollection *assetCollection;
     
 - (void)deselectAsset: (PHAsset *)asset;
+- (void)selectAsset: (PHAsset *)asset callDelegate:(BOOL)callDelegate;
 
 @end

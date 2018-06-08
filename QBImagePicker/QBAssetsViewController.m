@@ -162,6 +162,15 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
         [self collectionView:self.collectionView didDeselectItemAtIndexPath:ip];
     }
 }
+    
+- (void)selectAsset: (PHAsset *)asset callDelegate:(BOOL)callDelegate {
+    NSUInteger idx = [self.fetchResult indexOfObject:asset];
+    if (idx != NSNotFound) {
+        NSIndexPath *ip = [NSIndexPath indexPathForItem:idx inSection:0];
+        [self.collectionView selectItemAtIndexPath:ip animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+        [self didSelectItemAtIndexPath:ip collectionView:self.collectionView callDelegate:callDelegate];
+    }
+}
 
 
 #pragma mark - Accessors
@@ -198,6 +207,10 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
         [self.imagePickerController.delegate qb_imagePickerController:self.imagePickerController
                                                didFinishPickingAssets:self.imagePickerController.selectedAssets.array];
     }
+}
+    
+- (IBAction)onCamera:(id)sender {
+    self.imagePickerController.onCameraButton();
 }
 
 
@@ -588,6 +601,10 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self didSelectItemAtIndexPath:indexPath collectionView:collectionView callDelegate:YES];
+}
+    
+- (void)didSelectItemAtIndexPath:(NSIndexPath *)indexPath collectionView: (UICollectionView *)collectionView callDelegate:(BOOL)callDelegate {
     QBImagePickerController *imagePickerController = self.imagePickerController;
     NSMutableOrderedSet *selectedAssets = imagePickerController.selectedAssets;
     
@@ -620,12 +637,12 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
             }
         }
     } else {
-        if ([imagePickerController.delegate respondsToSelector:@selector(qb_imagePickerController:didFinishPickingAssets:)]) {
+        if (callDelegate && [imagePickerController.delegate respondsToSelector:@selector(qb_imagePickerController:didFinishPickingAssets:)]) {
             [imagePickerController.delegate qb_imagePickerController:imagePickerController didFinishPickingAssets:@[asset]];
         }
     }
     
-    if ([imagePickerController.delegate respondsToSelector:@selector(qb_imagePickerController:didSelectAsset:)]) {
+    if (callDelegate && [imagePickerController.delegate respondsToSelector:@selector(qb_imagePickerController:didSelectAsset:)]) {
         [imagePickerController.delegate qb_imagePickerController:imagePickerController didSelectAsset:asset];
     }
 }

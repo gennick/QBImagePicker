@@ -59,4 +59,7 @@ typedef NS_ENUM(NSUInteger, QBImagePickerMediaType) {
 @property (nonatomic, strong) UIImage *customCheckmarkUnselected;
 @property (nonatomic, strong) UIImage *customCheckmarkSelected;
 
+@property (nonatomic, assign) BOOL showCameraButton;
+@property (nonatomic, copy) void (^onCameraButton)(void);
+
 @end

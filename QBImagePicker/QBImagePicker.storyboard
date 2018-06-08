@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -259,10 +259,19 @@
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSF-Ll-xKE">
+                                    <rect key="frame" x="30" y="20" width="37" height="27"/>
+                                    <state key="normal" image="camera-button"/>
+                                    <connections>
+                                        <action selector="onCamera:" destination="QiH-NZ-ZGN" eventType="touchUpInside" id="wmX-j9-5TS"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="m2s-7T-bnL" firstAttribute="left" secondItem="sqR-h3-lW1" secondAttribute="left" id="8fv-Sl-lhe"/>
                                 <constraint firstAttribute="centerY" secondItem="m2s-7T-bnL" secondAttribute="centerY" id="DrY-pC-Gfi"/>
+                                <constraint firstItem="zSF-Ll-xKE" firstAttribute="centerY" secondItem="sqR-h3-lW1" secondAttribute="centerY" id="GmF-OP-tmJ"/>
+                                <constraint firstItem="zSF-Ll-xKE" firstAttribute="leading" secondItem="sqR-h3-lW1" secondAttribute="leading" constant="30" id="kBe-5F-F8o"/>
                                 <constraint firstAttribute="right" secondItem="m2s-7T-bnL" secondAttribute="right" id="lng-sP-3aa"/>
                             </constraints>
                         </collectionReusableView>
@@ -307,7 +316,10 @@
             <point key="canvasLocation" x="166" y="852"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera-button" width="37" height="27"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0Eg-h9-qGv"/>
+        <segue reference="2ft-L1-HaB"/>
     </inferredMetricsTieBreakers>
 </document>
